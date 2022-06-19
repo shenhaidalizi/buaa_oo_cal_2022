@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         //进制转换器
         Button jinzhi = (Button) findViewById(R.id.jinzhi);
         jinzhi.setOnClickListener(new View.OnClickListener(){
@@ -50,39 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-/*
-        Button changdu = (Button) findViewById(R.id.chang_du);
-        changdu.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this,Length.class);
-                startActivity(intent);
-            }
-        });
-        Button tiji = (Button) findViewById(R.id.ti_ji);
-        tiji.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this,Volume.class);
-                startActivity(intent);
-            }
-        });
-        Button riqi = (Button) findViewById(R.id.ri_qi);
-        riqi.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this,TimeCal.class);
-                startActivity(intent);
-            }
-        });
-        Button huilv = (Button) findViewById(R.id.hui_lv);
-        huilv.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this,Huilv.class);
-                startActivity(intent);
-            }
-        });*/
         Button weiyunsuan = (Button) findViewById(R.id.weiyunsuan);
         weiyunsuan.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -99,11 +67,29 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        Button page_replace = (Button) findViewById(R.id.page_replace);
+        page_replace.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity.this,PageReplace.class);
+                startActivity(intent);
+            }
+        });
         Button env_manage = (Button) findViewById(R.id.env_manage);
         env_manage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this,Manager.class);
+                startActivity(intent);
+            }
+        });
+        Button disk_seek = (Button) findViewById(R.id.disk_seek);
+        disk_seek.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity.this,DiskSeek.class);
                 startActivity(intent);
             }
         });

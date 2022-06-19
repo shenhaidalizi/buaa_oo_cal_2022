@@ -69,27 +69,6 @@
             android:layout_weight="1"
             android:text="地址解析"
             />
-        <!--Button
-            android:id="@+id/chang_du"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="长度转换"
-            />
-        <Button
-            android:id="@+id/ti_ji"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="体积转换"
-            />
-        <Button
-            android:id="@+id/ri_qi"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="日期计算"
-            /-->
     </TableRow>
 
     <TableRow
@@ -102,12 +81,6 @@
         android:layout_columnWeight="1"
         android:layout_gravity="fill">
 
-        <!--Button
-            android:id="@+id/hui_lv"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="实时汇率" /-->
 
         <Button
             android:id="@+id/page_replace"
@@ -122,16 +95,12 @@
             android:layout_weight="1"
             android:text="进程调度" />
         <Button
-            android:id="@+id/disk_seel"
+            android:id="@+id/disk_seek"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:text="磁盘寻道" />
 
-        <!--TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="3" /-->
     </TableRow>
 
 
