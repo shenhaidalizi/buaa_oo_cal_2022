@@ -192,7 +192,7 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
                     }catch (Exception e){
                     }
                 case R.id.but_enter:
-                    Mcalculate(str1,str2,str3);
+                    Mcalculate(str1,env_length.getText().toString(),env_pri.getText().toString());
                     break;
                 case R.id.clean_all:
                     env_arr.setText("");
@@ -250,7 +250,7 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
                     }catch (Exception e){
                     }
                 case R.id.but_enter:
-                    Mcalculate(str1,str2,str3);
+                    Mcalculate(env_arr.getText().toString(),str2,env_pri.getText().toString());
                     break;
                 case R.id.clean_all:
                     env_arr.setText("");
@@ -308,7 +308,7 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
                     }catch (Exception e){
                     }
                 case R.id.but_enter:
-                    Mcalculate(str1,str2,str3);
+                    Mcalculate(env_arr.getText().toString(),env_length.getText().toString(),str3);
                     break;
                 case R.id.clean_all:
                     env_arr.setText("");
@@ -347,7 +347,7 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
         String pjzzsc_result="吼吼";
         String pjdqzzsc_result="嘿嘿";
 
-
+        alert(str_arr+" "+str_length+" "+str_pri);
         /*此处为模拟进程调度算法，待补充*/
         if (algorithm==1){
 

@@ -275,7 +275,7 @@
             android:id="@+id/but_d"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="D" />
+            android:text="算法3" />
 
     </TableRow>
     <TableRow
@@ -298,16 +298,16 @@
             android:text="," />
 
         <Button
-            android:id="@+id/but_b"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:text="B"
-            />
-        <Button
             android:id="@+id/but_enter"
             android:layout_weight="1"
             android:layout_height="fill_parent"
             android:text="enter"
+            />
+        <Button
+            android:id="@+id/but_b"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:text="算法4"
             />
 
     </TableRow>
