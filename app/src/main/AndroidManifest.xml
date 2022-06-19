@@ -29,6 +29,10 @@
             android:launchMode="singleTask"
             android:screenOrientation="reversePortrait" />
         <activity
+            android:name=".Manager"
+            android:launchMode="singleTask"
+            android:screenOrientation="reversePortrait" />
+        <activity
             android:name=".MainActivity"
             android:launchMode="singleTask">
             <intent-filter>

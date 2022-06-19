@@ -59,7 +59,7 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jin_zhi);
+        setContentView(R.layout.env_manage);
         but_0=findViewById(R.id.but_0);
         but_1=findViewById(R.id.but_1);
         but_2=findViewById(R.id.but_2);
@@ -82,10 +82,10 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
         env_time=findViewById(R.id.time_edit);
 
         //        光标显示但不召出软键盘
-        //env_arr.setShowSoftInputOnFocus(false);
-        //env_length.setShowSoftInputOnFocus(false);
-        //env_pri.setShowSoftInputOnFocus(false);
-        //env_time.setShowSoftInputOnFocus(false);
+        env_arr.setShowSoftInputOnFocus(false);
+        env_length.setShowSoftInputOnFocus(false);
+        env_pri.setShowSoftInputOnFocus(false);
+        env_time.setShowSoftInputOnFocus(false);
 
         but_0.setOnClickListener(this);
         but_1.setOnClickListener(this);
@@ -101,8 +101,8 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
         but_fcfs.setOnClickListener(this);
         but_sjf.setOnClickListener(this);
         but_enter.setOnClickListener(this);
-        but_e.setOnClickListener(this);
-        but_f.setOnClickListener(this);
+        //but_e.setOnClickListener(this);
+        //but_f.setOnClickListener(this);
         env_arr.setOnClickListener(this);
         env_length.setOnClickListener(this);
         env_pri.setOnClickListener(this);
