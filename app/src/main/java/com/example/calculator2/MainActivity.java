@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+/*
         Button changdu = (Button) findViewById(R.id.chang_du);
         changdu.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -80,6 +80,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this,Huilv.class);
+                startActivity(intent);
+            }
+        });*/
+        Button weiyunsuan = (Button) findViewById(R.id.weiyunsuan);
+        weiyunsuan.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity.this,Weiyunsuan.class);
+                startActivity(intent);
+            }
+        });
+        Button dizhijiexi = (Button) findViewById(R.id.dizhijiexi);
+        dizhijiexi.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity.this,Dizhijiexi.class);
                 startActivity(intent);
             }
         });

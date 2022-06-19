@@ -33,6 +33,15 @@
             android:launchMode="singleTask"
             android:screenOrientation="reversePortrait" />
         <activity
+            android:name=".Weiyunsuan"
+            android:launchMode="singleTask"
+            android:screenOrientation="reversePortrait" />
+        <activity
+            android:name=".Dizhijiexi"
+            android:launchMode="singleTask"
+            android:screenOrientation="reversePortrait" />
+
+        <activity
             android:name=".MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
