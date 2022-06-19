@@ -315,7 +315,7 @@ public class Dizhijiexi extends AppCompatActivity implements  View.OnClickListen
                     }catch (Exception e){
                     }
                 case R.id.enter:
-                    dzjxCalculate(str,bit1_edit.getText().toString(),bit2_edit.getText().toString(),bit3_edit.getText().toString());
+                    dzjxCalculate(addr_edit.getText().toString(),str,bit2_edit.getText().toString(),bit3_edit.getText().toString());
                     break;
                 case R.id.clean_all:
                     addr_edit.setText("");
@@ -368,7 +368,7 @@ public class Dizhijiexi extends AppCompatActivity implements  View.OnClickListen
                     }catch (Exception e){
                     }
                 case R.id.enter:
-                    dzjxCalculate(str,bit1_edit.getText().toString(),bit2_edit.getText().toString(),bit3_edit.getText().toString());
+                    dzjxCalculate(addr_edit.getText().toString(),bit1_edit.getText().toString(),str,bit3_edit.getText().toString());
                     break;
                 case R.id.clean_all:
                     addr_edit.setText("");
@@ -421,7 +421,7 @@ public class Dizhijiexi extends AppCompatActivity implements  View.OnClickListen
                     }catch (Exception e){
                     }
                 case R.id.enter:
-                    dzjxCalculate(str,bit1_edit.getText().toString(),bit2_edit.getText().toString(),bit3_edit.getText().toString());
+                    dzjxCalculate(addr_edit.getText().toString(),bit1_edit.getText().toString(),bit2_edit.getText().toString(),str);
                     break;
                 case R.id.clean_all:
                     addr_edit.setText("");
@@ -460,10 +460,19 @@ public class Dizhijiexi extends AppCompatActivity implements  View.OnClickListen
         String result2="...";
         String result3="!!!";
 
-        alert(addr+" "+bit1+" "+bit2+" "+bit3);
+        //alert(addr+" "+bit1+" "+bit2+" "+bit3);
 
-        /*此处为算法，待补充*/
+        int address=Integer.parseInt(addr,16);
+        int b1=Integer.parseInt(bit1,10);
+        int b2=Integer.parseInt(bit2,10);
+        int b3=Integer.parseInt(bit3,10);
+        int r1=address>>(b2+b3);
+        int r2=(address>>b3)%(int)Math.pow(2,b2);
+        int r3=address%(int)Math.pow(2,b3);
 
+        result1="0x"+Integer.toHexString(r1);
+        result2="0x"+Integer.toHexString(r2);
+        result3="0x"+Integer.toHexString(r3);
 
         result1_edit.setText(result1);
         result2_edit.setText(result2);
