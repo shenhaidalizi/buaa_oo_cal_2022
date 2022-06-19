@@ -32,11 +32,14 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
     private Button but_enter;
     private Button but_e;
     private Button but_f;
-    private EditText pjzzsc;
     private EditText env_arr;
     private EditText env_length;
     private EditText env_pri;
 
+    private EditText env_wait;
+    private EditText env_turnover;
+    private EditText pjdqzzsc;
+    private EditText pjzzsc;
     //文本框空标记
     boolean isClean1=true;
     boolean isClean2=true;
@@ -74,13 +77,21 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
         env_arr=findViewById(R.id.arr_edit);
         env_length=findViewById(R.id.length_edit);
         env_pri=findViewById(R.id.pri_edit);
+
+        env_wait=findViewById(R.id.wait_edit);
+        env_turnover=findViewById(R.id.turnover_edit);
         pjzzsc=findViewById(R.id.pjzzsc);
+        pjdqzzsc=findViewById(R.id.pjdqzzsc);
 
         //        光标显示但不召出软键盘
         env_arr.setShowSoftInputOnFocus(false);
         env_length.setShowSoftInputOnFocus(false);
         env_pri.setShowSoftInputOnFocus(false);
+
+        env_wait.setShowSoftInputOnFocus(false);
+        env_turnover.setShowSoftInputOnFocus(false);
         pjzzsc.setShowSoftInputOnFocus(false);
+        pjdqzzsc.setShowSoftInputOnFocus(false);
 
         but_0.setOnClickListener(this);
         but_1.setOnClickListener(this);
@@ -101,6 +112,9 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
         env_arr.setOnClickListener(this);
         env_length.setOnClickListener(this);
         env_pri.setOnClickListener(this);
+        env_wait.setOnClickListener(this);
+        env_turnover.setOnClickListener(this);
+        pjzzsc.setOnClickListener(this);
         pjzzsc.setOnClickListener(this);
 
 
@@ -300,7 +314,10 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
                     env_arr.setText("");
                     env_length.setText("");
                     env_pri.setText("");
+                    env_wait.setText("");
+                    env_turnover.setText("");
                     pjzzsc.setText("");
+                    pjdqzzsc.setText("");
                     break;
                 case R.id.backspace:
                     if (!isClean3) {
@@ -325,7 +342,27 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
     }
 
     public void Mcalculate(String str_arr,String str_length,String str_pri){
-        pjzzsc.setText("?");
+        String env_wait_result="哈哈";
+        String env_turnover_result="呵呵";
+        String pjzzsc_result="吼吼";
+        String pjdqzzsc_result="嘿嘿";
+
+
+        /*此处为模拟进程调度算法，待补充*/
+        if (algorithm==1){
+
+        }
+        else if (algorithm ==2){
+
+        }
+        else
+            alert("请选择算法");
+
+
+        env_wait.setText(env_wait_result);
+        env_turnover.setText(env_turnover_result);
+        pjzzsc.setText(pjzzsc_result);
+        pjdqzzsc.setText(pjdqzzsc_result);
     }
 
     public void alert(String s){

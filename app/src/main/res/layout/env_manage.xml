@@ -77,7 +77,6 @@
             android:singleLine="true" />
 
     </TableRow>
-
     <TableRow
         android:layout_row="3"
         android:layout_column="0"
@@ -86,23 +85,79 @@
         >
 
         <TextView
-            android:id="@+id/time_text"
+            android:id="@+id/wait_text"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="平均周转时长"
+            android:text="进程等待时长"
             />
 
         <EditText
-            android:id="@+id/pjzzsc"
+            android:id="@+id/wait_edit"
             android:layout_height="match_parent"
             android:layout_weight=".3"
-            android:maxLength="30"
+            android:maxLength="100"
             android:singleLine="true" />
 
     </TableRow>
 
     <TableRow
         android:layout_row="4"
+        android:layout_column="0"
+        android:layout_gravity="fill"
+        android:layout_rowWeight="1"
+        >
+
+        <TextView
+            android:id="@+id/turnover_text"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="进程周转时长"
+            />
+
+        <EditText
+            android:id="@+id/turnover_edit"
+            android:layout_height="match_parent"
+            android:layout_weight=".3"
+            android:maxLength="100"
+            android:singleLine="true" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_row="5"
+        android:layout_rowWeight="1"
+        android:layout_column="0"
+        android:layout_gravity="fill">
+
+        <TextView
+            android:id="@+id/pjzzsc_text"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="平均周转时长" />
+
+        <EditText
+            android:id="@+id/pjzzsc"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:maxLength="30"
+            android:singleLine="true" />
+        <TextView
+            android:id="@+id/pjdqzzsc_text"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="平均带权\n周转时长" />
+
+        <EditText
+            android:id="@+id/pjdqzzsc"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:maxLength="30"
+            android:singleLine="true" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_row="6"
         android:layout_column="0"
         android:layout_gravity="fill"
         android:layout_rowWeight=".8"
@@ -125,7 +180,7 @@
     </TableRow>
 
     <TableRow
-        android:layout_row="5"
+        android:layout_row="7"
         android:layout_column="0"
         android:layout_gravity="fill"
         android:layout_rowWeight=".8"
@@ -159,7 +214,7 @@
 
     </TableRow>
     <TableRow
-        android:layout_row="6"
+        android:layout_row="8"
         android:layout_column="0"
         android:layout_gravity="fill"
         android:layout_rowWeight=".8"
@@ -193,7 +248,7 @@
 
     </TableRow>
     <TableRow
-        android:layout_row="7"
+        android:layout_row="9"
         android:layout_rowWeight=".8"
         android:layout_column="0"
         android:layout_gravity="fill">
@@ -224,7 +279,7 @@
 
     </TableRow>
     <TableRow
-        android:layout_row="8"
+        android:layout_row="10"
         android:layout_column="0"
         android:layout_gravity="fill"
         android:layout_rowWeight=".8"
