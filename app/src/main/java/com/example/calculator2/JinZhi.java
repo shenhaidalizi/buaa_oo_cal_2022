@@ -30,6 +30,8 @@ public class JinZhi extends AppCompatActivity implements  View.OnClickListener{
     private EditText eight_edit;
     private EditText sixteen_edit;
 
+    private Button backspace;
+    private Button clean_all;
 
     //文本框空标记
     boolean clean=true;
@@ -58,6 +60,9 @@ public class JinZhi extends AppCompatActivity implements  View.OnClickListener{
         but_d=findViewById(R.id.but_d);
         but_e=findViewById(R.id.but_e);
         but_f=findViewById(R.id.but_f);
+
+        backspace=findViewById(R.id.backspace);
+        clean_all=findViewById(R.id.clean_all);
 
         two_edit=findViewById(R.id.two_edit);
         ten_edit=findViewById(R.id.ten_edit);
@@ -90,6 +95,8 @@ public class JinZhi extends AppCompatActivity implements  View.OnClickListener{
         ten_edit.setOnClickListener(this);
         eight_edit.setOnClickListener(this);
         sixteen_edit.setOnClickListener(this);
+        backspace.setOnClickListener(this);
+        clean_all.setOnClickListener(this);
 
 
 

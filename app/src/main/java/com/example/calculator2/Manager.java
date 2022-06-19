@@ -53,7 +53,7 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
     int type = 1;
 
     //    操作
-    private Button reset;
+    private Button clean_all;
     private Button backspace;
 
     @Override
@@ -75,6 +75,8 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
         but_sjf=findViewById(R.id.but_sjf);
         but_enter=findViewById(R.id.but_enter);
 
+        backspace=findViewById(R.id.backspace);
+        clean_all=findViewById(R.id.clean_all);
 
         env_arr=findViewById(R.id.arr_edit);
         env_length=findViewById(R.id.length_edit);
@@ -109,98 +111,8 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
         env_time.setOnClickListener(this);
 
 
-
-
-        env_arr.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-
-                but_0.setEnabled(true);
-                but_1.setEnabled(true);
-                but_2.setEnabled(true);
-                but_3.setEnabled(true);
-                but_4.setEnabled(true);
-                but_5.setEnabled(true);
-                but_6.setEnabled(true);
-                but_7.setEnabled(true);
-                but_8.setEnabled(true);
-                but_9.setEnabled(true);
-                but_dian.setEnabled(true);
-                but_fcfs.setEnabled(true);
-                but_sjf.setEnabled(true);
-                but_enter.setEnabled(true);
-                but_e.setEnabled(true);
-                but_f.setEnabled(true);
-                return false;
-            }
-        });
-        env_length.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                but_0.setEnabled(true);
-                but_1.setEnabled(true);
-                but_2.setEnabled(true);
-                but_3.setEnabled(true);
-                but_4.setEnabled(true);
-                but_5.setEnabled(true);
-                but_6.setEnabled(true);
-                but_7.setEnabled(true);
-                but_8.setEnabled(true);
-                but_9.setEnabled(true);
-                but_dian.setEnabled(true);
-                but_fcfs.setEnabled(true);
-                but_sjf.setEnabled(true);
-                but_enter.setEnabled(true);
-                but_e.setEnabled(true);
-                but_f.setEnabled(true);
-                return false;
-            }
-        });
-        env_pri.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                but_0.setEnabled(true);
-                but_1.setEnabled(true);
-                but_2.setEnabled(true);
-                but_3.setEnabled(true);
-                but_4.setEnabled(true);
-                but_5.setEnabled(true);
-                but_6.setEnabled(true);
-                but_7.setEnabled(true);
-                but_8.setEnabled(true);
-                but_9.setEnabled(true);
-                but_dian.setEnabled(true);
-                but_fcfs.setEnabled(true);
-                but_sjf.setEnabled(true);
-                but_enter.setEnabled(true);
-                but_e.setEnabled(true);
-                but_f.setEnabled(true);
-                return false;
-            }
-        });
-        env_time.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                but_0.setEnabled(true);
-                but_1.setEnabled(true);
-                but_2.setEnabled(true);
-                but_3.setEnabled(true);
-                but_4.setEnabled(true);
-                but_5.setEnabled(true);
-                but_6.setEnabled(true);
-                but_7.setEnabled(true);
-                but_8.setEnabled(true);
-                but_9.setEnabled(true);
-                but_dian.setEnabled(true);
-                but_fcfs.setEnabled(true);
-                but_sjf.setEnabled(true);
-                but_enter.setEnabled(true);
-
-                return false;
-            }
-        });
-
-
+        backspace.setOnClickListener(this);
+        clean_all.setOnClickListener(this);
 
 
     }
