@@ -23,13 +23,13 @@
             android:layout_height="wrap_content"
             android:text="进程抵达时间"
             />
+
         <EditText
             android:id="@+id/arr_edit"
-            android:layout_weight=".3"
             android:layout_height="match_parent"
-            android:singleLine="true"
-            android:maxLength="7"
-            />
+            android:layout_weight=".3"
+            android:maxLength="100"
+            android:singleLine="true" />
 
     </TableRow>
     <TableRow
@@ -45,13 +45,13 @@
             android:layout_height="wrap_content"
             android:text="进程预计时长"
             />
+
         <EditText
             android:id="@+id/length_edit"
-            android:layout_weight=".3"
             android:layout_height="match_parent"
-            android:singleLine="true"
-            android:maxLength="9"
-            />
+            android:layout_weight=".3"
+            android:maxLength="100"
+            android:singleLine="true" />
 
     </TableRow>
 
@@ -68,12 +68,13 @@
             android:layout_height="wrap_content"
             android:text="进程优先级"
             />
+
         <EditText
             android:id="@+id/pri_edit"
-            android:layout_weight=".3"
             android:layout_height="match_parent"
-            android:singleLine="true"
-            />
+            android:layout_weight=".3"
+            android:maxLength="100"
+            android:singleLine="true" />
 
     </TableRow>
 
@@ -90,13 +91,13 @@
             android:layout_height="wrap_content"
             android:text="平均周转时长"
             />
+
         <EditText
-            android:id="@+id/time_edit"
-            android:layout_weight=".3"
+            android:id="@+id/pjzzsc"
             android:layout_height="match_parent"
-            android:singleLine="true"
-            android:maxLength="10"
-            />
+            android:layout_weight=".3"
+            android:maxLength="30"
+            android:singleLine="true" />
 
     </TableRow>
 
@@ -236,11 +237,10 @@
             />
 
         <Button
-            android:id="@+id/but_dian"
-            android:layout_weight="1"
+            android:id="@+id/but_comma"
             android:layout_height="fill_parent"
-            android:text="."
-            />
+            android:layout_weight="1"
+            android:text="," />
 
         <Button
             android:id="@+id/but_b"
