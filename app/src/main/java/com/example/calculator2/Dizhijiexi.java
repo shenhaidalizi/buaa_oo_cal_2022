@@ -278,9 +278,9 @@ public class Dizhijiexi extends AppCompatActivity implements  View.OnClickListen
                         int end= addr_edit.getSelectionEnd();
                         str=addr_edit.getText().toString();
                         try{
-                            str = str.substring(0,start-1)+str.substring(end,addr_edit.getText().length());
+                            str = str.substring(0,start)+str.substring(end,addr_edit.getText().length());
                             addr_edit.setText(str + "" );
-                            addr_edit.setSelection(start-1);
+                            addr_edit.setSelection(start);
                         }catch (Exception e){
                         }
                         if (str.equals("")) {
@@ -332,9 +332,9 @@ public class Dizhijiexi extends AppCompatActivity implements  View.OnClickListen
                         int end= bit1_edit.getSelectionEnd();
                         str=bit1_edit.getText().toString();
                         try{
-                            str = str.substring(0,start-1)+str.substring(end,bit1_edit.getText().length());
+                            str = str.substring(0,start)+str.substring(end,bit1_edit.getText().length());
                             bit1_edit.setText(str + "" );
-                            bit1_edit.setSelection(start-1);
+                            bit1_edit.setSelection(start);
                         }catch (Exception e){
                         }
                         if (str.equals("")) {
@@ -385,9 +385,9 @@ public class Dizhijiexi extends AppCompatActivity implements  View.OnClickListen
                         int end= bit2_edit.getSelectionEnd();
                         str=bit2_edit.getText().toString();
                         try{
-                            str = str.substring(0,start-1)+str.substring(end,bit2_edit.getText().length());
+                            str = str.substring(0,start)+str.substring(end,bit2_edit.getText().length());
                             bit2_edit.setText(str + "" );
-                            bit2_edit.setSelection(start-1);
+                            bit2_edit.setSelection(start);
                         }catch (Exception e){
                         }
                         if (str.equals("")) {
@@ -438,9 +438,9 @@ public class Dizhijiexi extends AppCompatActivity implements  View.OnClickListen
                         int end= bit3_edit.getSelectionEnd();
                         str=bit3_edit.getText().toString();
                         try{
-                            str = str.substring(0,start-1)+str.substring(end,bit3_edit.getText().length());
+                            str = str.substring(0,start)+str.substring(end,bit3_edit.getText().length());
                             bit3_edit.setText(str + "" );
-                            bit3_edit.setSelection(start-1);
+                            bit3_edit.setSelection(start);
                         }catch (Exception e){
                         }
                         if (str.equals("")) {
