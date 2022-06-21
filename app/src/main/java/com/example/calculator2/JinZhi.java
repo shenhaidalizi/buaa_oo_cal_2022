@@ -292,48 +292,60 @@ public class JinZhi extends AppCompatActivity implements  View.OnClickListener{
                 if (!clean) {
                     try{
                         if (jin_zhi == 2) {
+                            int start = two_edit.getSelectionStart();
+                            int end= two_edit.getSelectionEnd();
                             str=two_edit.getText().toString();
-                            str=str.substring(0,two_edit.getText().length()-1);
-                            two_edit.setText(str + "");
+                            str = str.substring(0,start)+str.substring(end,two_edit.getText().length());
+                            two_edit.setText(str + "" );
+
                             value = Integer.parseInt(two_edit.getText().toString(),2);
                             sixteen_edit.setText(Integer.toHexString(value));
                             ten_edit.setText(Integer.toString(value));
                             eight_edit.setText(Integer.toOctalString(value));
-                            two_edit.setSelection(two_edit.getText().length());
-                            two_edit.getSelectionEnd();
+
+                            two_edit.setSelection(start);
                         }
                         else if (jin_zhi == 8) {
+                            int start = eight_edit.getSelectionStart();
+                            int end= eight_edit.getSelectionEnd();
                             str=eight_edit.getText().toString();
-                            str=str.substring(0,eight_edit.getText().length()-1);
+                            str = str.substring(0,start)+str.substring(end,eight_edit.getText().length());
                             eight_edit.setText(str + "");
+
                             value = Integer.parseInt(eight_edit.getText().toString(),8);
                             sixteen_edit.setText(Integer.toHexString(value));
                             ten_edit.setText(Integer.toString(value));
                             two_edit.setText(Integer.toHexString(value));
-                            eight_edit.setSelection(eight_edit.getText().length());
-                            eight_edit.getSelectionEnd();
+
+                            eight_edit.setSelection(start);
                         }
                         else if (jin_zhi == 10) {
+                            int start = ten_edit.getSelectionStart();
+                            int end= ten_edit.getSelectionEnd();
                             str=ten_edit.getText().toString();
-                            str=str.substring(0,ten_edit.getText().length()-1);
+                            str = str.substring(0,start)+str.substring(end,ten_edit.getText().length());
                             ten_edit.setText(str + "");
+
                             value = Integer.parseInt(ten_edit.getText().toString());
                             sixteen_edit.setText(Integer.toHexString(value));
                             two_edit.setText(Integer.toBinaryString(value));
                             eight_edit.setText(Integer.toOctalString(value));
-                            ten_edit.setSelection(ten_edit.getText().length());
-                            ten_edit.getSelectionEnd();
+
+                            ten_edit.setSelection(start);
                         }
                         else if (jin_zhi == 16) {
-                            str=sixteen_edit.getText().toString();
-                            str=str.substring(0,sixteen_edit.getText().length()-1);
-                            sixteen_edit.setText(str + "");
+                            int start = ten_edit.getSelectionStart();
+                            int end= ten_edit.getSelectionEnd();
+                            str=ten_edit.getText().toString();
+                            str = str.substring(0,start)+str.substring(end,ten_edit.getText().length());
+                            ten_edit.setText(str + "");
+
                             value = Integer.parseInt(sixteen_edit.getText().toString(),16);
                             ten_edit.setText(Integer.toString(value));
                             two_edit.setText(Integer.toBinaryString(value));
                             eight_edit.setText(Integer.toOctalString(value));
-                            sixteen_edit.setSelection(sixteen_edit.getText().length());
-                            sixteen_edit.getSelectionEnd();
+
+                            ten_edit.setSelection(start);
                         }
 
                     }catch (Exception e) {
