@@ -282,6 +282,9 @@ public class PageReplace extends AppCompatActivity implements  View.OnClickListe
         }
         else if (algorithm ==3){
             pfTimes_result="CLOCK";
+            r=callAlgorithm(frame,pages,3);
+            pfTimes_result=Integer.toString(r.pfTimes);
+            pfRate_result=Double.toString(r.pfRate);
         }
         else if (algorithm ==4){
             pfTimes_result="OPT";
@@ -337,6 +340,7 @@ public class PageReplace extends AppCompatActivity implements  View.OnClickListe
         int noUseTime;
         int nextUse=0xffff;
         int lastUse=-1;
+        int clockFlag;
         public Frame(int index){
             this.index=index;
             this.page=-1;
@@ -344,8 +348,10 @@ public class PageReplace extends AppCompatActivity implements  View.OnClickListe
             this.noUseTime=0xffff;
             this.nextUse=0xffff;
             this.lastUse=-1;
+            this.clockFlag = 0;
         }
     }
+
 
     //相当于接口，参数转换，调用置换算法
     public static ret callAlgorithm(String frame, String pages,int algorithm){
@@ -378,7 +384,7 @@ public class PageReplace extends AppCompatActivity implements  View.OnClickListe
                 pfTimes=pageDefaultLRU(frameNum,pagesint,pageNum);
                 break;
             case 3:
-                //pfTimes=pageDefaultOPT(frameNum,pagesint,pageNum);
+                pfTimes=pageDefaultClock(frameNum,pagesint,pageNum);
                 break;
             case 4:
                 pfTimes=pageDefaultOPT(frameNum,pagesint,pageNum);
@@ -461,7 +467,45 @@ public class PageReplace extends AppCompatActivity implements  View.OnClickListe
         }
         return miss;
     }
+    static int pageDefaultClock(int frameNum, int[] pages,int pageNum){
+        int miss=0;
+        Frame[] frames=new Frame[frameNum];
+        for (int j=0;j<frameNum;j++){
+            frames[j]=new Frame(j);
+        }
+        int thisPage;
+        int i;
+        int match;
+        int rplc;
+        int pageIn;
 
+        int point=-1;
+    /*    System.out.print(" f:  ");
+        for (int j=0;j<frameNum;j++)
+            System.out.print(j+" ");
+        System.out.println();*/
+
+        for (i=0;i<pageNum;i++){                    //模拟依次调用每个页面
+            //prtCrtFrames(i,frames,frameNum,point);
+            point++;
+            if (point==5)
+                point=0;
+            match=match(i,frames,frameNum,pages);
+            if (match!=-1){     //匹配到
+                frames[match].clockFlag=1;
+                point=match;
+            }
+            else{               //缺页
+                miss++;
+                pageIn=pages[i];
+                rplc=findReplaceClock(pageIn,i,frames,frameNum,pages,pageNum,point);
+                frames[rplc].page=pageIn;           //页面替换
+                frames[rplc].clockFlag=1;
+            }
+            //        prtCrtFrames(i,frames,frameNum);    //输出当前各页框里存的页
+        }
+        return miss;
+    }
     static int pageDefaultOPT(int frameNum, int[] pages,int pageNum){
         int miss=0;
         Frame[] frames=new Frame[frameNum];
@@ -566,6 +610,27 @@ public class PageReplace extends AppCompatActivity implements  View.OnClickListe
         //     System.out.println("in:"+page);
         return rplc;
     }
+    static int findReplaceClock(int page, int now_i, Frame[] frames, int frameNum, int[] pages, int pageNum, int point) {
+        int rplc = -1;
 
+        //    System.out.print("              ");
+        for (int count=1;count<=frameNum;count++,point++) {       //最多转一圈
+            //        System.out.print((frames[j].noUseTime>=0xff00?"-":frames[j].noUseTime)+" ");
+            if (point>=frameNum)
+                point%=frameNum;
+            if (frames[point].clockFlag==1)
+                frames[point].clockFlag=0;
+            else {
+                rplc=point;
+                break;
+            }
+        }
+        //    System.out.println("in:"+page);
+        if (rplc==-1) {
+            rplc = point++;
+            rplc %= frameNum;
+        }
+        return rplc;
+    }
 
 }
