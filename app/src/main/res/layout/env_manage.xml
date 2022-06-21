@@ -275,7 +275,7 @@
             android:id="@+id/but_pri"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="primory" />
+            android:text="静态优先级" />
 
     </TableRow>
     <TableRow
@@ -303,12 +303,12 @@
             android:layout_height="fill_parent"
             android:text="enter"
             />
-
         <Button
             android:id="@+id/but_sjf2"
-            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="sjf\n(抢占式）" />
+            android:layout_height="fill_parent"
+            android:text="抢占式sjf"
+            />
 
     </TableRow>
 

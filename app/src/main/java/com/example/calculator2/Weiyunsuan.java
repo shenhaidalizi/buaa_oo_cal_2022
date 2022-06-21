@@ -436,10 +436,37 @@ public class Weiyunsuan extends AppCompatActivity implements  View.OnClickListen
         String result="???";
 
         //alert(str_n1+" "+str_op+" "+str_n2);
+        int n1 = 0, n2 = 0;
+        if(!str_op.equals("~")) n1 = Integer.parseInt(str_n1,16);
+        if(enable16)n2 = Integer.parseInt(str_n2,16);
+        else n2 = Integer.parseInt(str_n2,10);
+        int r = 0;
+        int flag = 0;
+        if(str_op.equals("<<")){
+            r = n1 << n2;
+            flag = 1;
+        }
+        else if(str_op.equals(">>")){
+            r = n1 >> n2;
+            flag = 1;
+        }
+        else if(str_op.equals("|")){
+            r = n1 | n2;
+            flag = 1;
+        }
+        else if(str_op.equals("&")){
+            r = n1 & n2;
+            flag = 1;
+        }
+        else if(str_op.equals("~")){
+            r = ~n2;
+            flag = 1;
+        }
+
 
         /*此处为算法，待补充*/
-
-
+        result = Integer.toHexString(r);
+        //alert(Integer.toString(flag));
         result_edit.setText(result);
     }
 

@@ -29,8 +29,9 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
     private Button but_comma;
     private Button but_fcfs;
     private Button but_sjf;
-    private Button but_pri;
+    private Button but_enter;
     private Button but_sjf2;
+    private Button but_pri;
     private EditText env_arr;
     private EditText env_length;
     private EditText env_pri;
@@ -49,7 +50,6 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
     //    操作
     private Button clean_all;
     private Button backspace;
-    private Button but_enter;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -69,12 +69,12 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
         but_comma=findViewById(R.id.but_comma);
         but_fcfs=findViewById(R.id.but_fcfs);
         but_sjf=findViewById(R.id.but_sjf);
+        but_enter=findViewById(R.id.but_enter);
         but_pri=findViewById(R.id.but_pri);
         but_sjf2=findViewById(R.id.but_sjf2);
 
         backspace=findViewById(R.id.backspace);
         clean_all=findViewById(R.id.clean_all);
-        but_enter=findViewById(R.id.but_enter);
 
         env_arr=findViewById(R.id.arr_edit);
         env_length=findViewById(R.id.length_edit);
@@ -108,6 +108,7 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
         but_comma.setOnClickListener(this);
         but_fcfs.setOnClickListener(this);
         but_sjf.setOnClickListener(this);
+        but_enter.setOnClickListener(this);
         but_pri.setOnClickListener(this);
         but_sjf2.setOnClickListener(this);
         env_arr.setOnClickListener(this);
@@ -121,7 +122,6 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
 
         backspace.setOnClickListener(this);
         clean_all.setOnClickListener(this);
-        but_enter.setOnClickListener(this);
 
         env_arr.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -231,7 +231,7 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
             switch (view.getId()){
                 case R.id.but_fcfs:
                     algorithm = 1;
-                    break;
+                    //break;
                 case R.id.but_sjf:
                     algorithm = 2;
                     break;
@@ -295,7 +295,7 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
             switch (view.getId()){
                 case R.id.but_fcfs:
                     algorithm = 1;
-                    break;
+                    //break;
                 case R.id.but_sjf:
                     algorithm = 2;
                     break;
@@ -361,28 +361,351 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
 
     }
 
+
+
     public void Mcalculate(String str_arr,String str_length,String str_pri){
+
+        String[] nums1 = str_arr.split(",");
+        int length1 = nums1.length;
+        String[] nums2 = str_length.split(",");
+        int length2 = nums2.length;
+
+
+        /*if(algorithm == 4){
+            String[] nums3 = str_pri.split(",");
+            length3 = nums3.length;
+            for(int sb = 0;sb < length1;sb++)pri[sb] = Integer.parseInt(nums3[sb]);
+        }*/
+
+
         String env_wait_result="";
         String env_turnover_result="";
         String pjzzsc_result="";
         String pjdqzzsc_result="";
 
-        //alert(str_arr+" "+str_length+" "+str_pri);
+        //alert("输入非法" + str_arr +"|" +str_length +"|"+ str_pri +"|"+ Integer.toString(length1) + Integer.toString(length2) + Integer.toString(length3) + "|" +  Integer.toString(algorithm));
+
+        if(length1 == length2){
+
+            //alert("init succ!");
+            if (algorithm==1){
+
+                int now = 0;
+                int arr[] = new int[length1];
+                int length[] = new int[length1];
+                int pri[] = new int[length1];
+                int start[] = new int[length1];
+                int wait[] = new int[length1];
+                int cir[] = new int[length1];
+                int end[] = new int[length1];
+                for(int sb = 0;sb < length1;sb++){
+                    arr[sb] = Integer.parseInt(nums1[sb]);
+                    length[sb] = Integer.parseInt(nums2[sb]);
+
+                }
+                int anscir = 0;
+                int i;
+                i = length1;
+                int j;
+                int ans = arr[0];
+                for(j = 0;j < i;j++){
+                    start[j] = ans;
+                    ans = ans + length[j];
+                    if(j != i - 1 && ans <= arr[j + 1])ans = arr[j + 1];
+                }
+                for(i = 0;i < length1;i++){
+                    wait[i] = start[i] - arr[i];
+                    if(i != length1 - 1)env_wait_result = env_wait_result + Integer.toString(wait[i]) + ",";
+                    else env_wait_result = env_wait_result + Integer.toString(wait[i]);
+                }
+                for (i = 0;i < length1;i++){
+                    cir[i] = wait[i] + length[i];
+                    anscir += cir[i];
+                    if(i != length1 - 1)env_turnover_result = env_turnover_result + Integer.toString(cir[i]) + ",";
+                    else env_turnover_result = env_turnover_result + Integer.toString(cir[i]);
+                }
+
+                double pjzzsc = anscir / length1;
+                double pjdqzzsc = 0;
+                for (i = 0;i < length1;i++){
+                    pjdqzzsc += cir[i] / length[i];
+                }
+                pjzzsc_result = Double.toString(pjzzsc);
+                pjdqzzsc_result = Double.toString(pjdqzzsc);
+
+            }
+            else if (algorithm ==2){
+
+                int now = 0;
+                int arr[] = new int[length1];
+                int length[] = new int[length1];
+                int pri[] = new int[length1];
+                int start[] = new int[length1];
+                int wait[] = new int[length1];
+                int cir[] = new int[length1];
+                int end[] = new int[length1];
+                for(int sb = 0;sb < length1;sb++){
+                    arr[sb] = Integer.parseInt(nums1[sb]);
+                    length[sb] = Integer.parseInt(nums2[sb]);
+
+                }
+                int anscir = 0;
+                int i = 0;
+                int tepflag[] = new int[100];
+                for(int baga = 0;baga < 100;baga++)tepflag[baga] = 0;
+                int counttime = 0;
+                while(i < length1){
+                    int tepi = -1;
+                    int teptime = 2147483647;
+                    int j;
+                    for(j = 0; j < length1 && arr[j] <= counttime;j++){
+                        if(tepflag[j] != -1 && length[j] < teptime){
+                            teptime = length[j];
+                            tepi = j;
+                        }
+                    }
+                    if(tepi != -1){
+
+                        start[tepi] = counttime;
+                        i++;
+                        counttime = counttime + length[tepi];
+                        tepflag[tepi] = -1;
+
+                    }
+                    else{
+                        counttime = arr[j];
+                    }
+                }
+
+
+                for(i = 0;i < length1;i++){
+                    wait[i] = start[i] - arr[i];
+                    if(i != length1 - 1)env_wait_result = env_wait_result + Integer.toString(wait[i]) + ",";
+                    else env_wait_result = env_wait_result + Integer.toString(wait[i]);
+                }
+
+                for (i = 0;i < length1;i++){
+                    cir[i] = wait[i] + length[i];
+                    anscir += cir[i];
+                    if(i != length1 - 1)env_turnover_result = env_turnover_result + Integer.toString(cir[i]) + ",";
+                    else env_turnover_result = env_turnover_result + Integer.toString(cir[i]);
+                }
+
+                double pjzzsc = anscir / length1;
+                double pjdqzzsc = 0;
+                for (i = 0;i < length1;i++){
+                    pjdqzzsc += cir[i] / length[i];
+                }
+                pjzzsc_result = Double.toString(pjzzsc);
+                pjdqzzsc_result = Double.toString(pjdqzzsc);
+
+            }
+            else if (algorithm ==3){
+                String[] nums3 = str_pri.split(",");
+                int length3 = nums3.length;
+                if(length3 != length1) alert("输入非法");
+                int now = 0;
+                int arr[] = new int[length1];
+                int length[] = new int[length1];
+                int pri[] = new int[length1];
+                int start[] = new int[length1];
+                int wait[] = new int[length1];
+                int cir[] = new int[length1];
+                int end[] = new int[length1];
+                for(int sb = 0;sb < length1;sb++){
+                    arr[sb] = Integer.parseInt(nums1[sb]);
+                    length[sb] = Integer.parseInt(nums2[sb]);
+                    pri[sb] = Integer.parseInt(nums3[sb]);
+                }
+                int anscir = 0;
+                int flag[] = new int[100];
+                for(int sb = 0;sb < 100;sb++)flag[sb] = 0;
+                now = arr[0];
+                int count = 0;
+                int nowenv = 0;
+                while(count < length1){
+                    int nowpri = 0;
+                    //findpri
+                    int i;
+
+                    int findenv = 0;
+                    for(i = 0;i < length1 && arr[i] <= now;i++){
+                        if(flag[i] == 0 && nowpri < pri[i]){
+                            nowpri = pri[i];
+                            nowenv = i;
+                            findenv = 1;
+                        }
+                    }
+
+                    if(findenv == 1){
+                        start[nowenv] = now;
+                        flag[nowenv] = -1;
+                        now = now + length[nowenv];
+                        end[nowenv] = now;
+                        count++;
+
+                    }
+                    else{
+                        int sb;
+                        for(sb = 0;sb < length1;sb++){
+                            if(arr[sb] > now){
+                                now = arr[sb];
+                                break;
+                            }
+                        }
+                    }
+
+                }
+                int i;
+                for(i = 0;i < length1;i++){
+                    wait[i] = start[i] - arr[i];
+                    if(i != length1 - 1)env_wait_result = env_wait_result + Integer.toString(wait[i]) + ",";
+                    else env_wait_result = env_wait_result + Integer.toString(wait[i]);
+                }
+
+                for (i = 0;i < length1;i++){
+                    cir[i] = wait[i] + length[i];
+                    anscir += cir[i];
+                    if(i != length1 - 1)env_turnover_result = env_turnover_result + Integer.toString(cir[i]) + ",";
+                    else env_turnover_result = env_turnover_result + Integer.toString(cir[i]);
+                }
+
+                double pjzzsc = anscir / length1;
+                double pjdqzzsc = 0;
+                for (i = 0;i < length1;i++){
+                    pjdqzzsc += cir[i] / length[i];
+                }
+                pjzzsc_result = Double.toString(pjzzsc);
+                pjdqzzsc_result = Double.toString(pjdqzzsc);
+            }
+            else if (algorithm ==4){
+
+                int now = 0;
+                int arr[] = new int[length1];
+                int length[] = new int[length1];
+                int pri[] = new int[length1];
+                int start[] = new int[length1];
+                int wait[] = new int[length1];
+                int cir[] = new int[length1];
+                int end[] = new int[length1];
+                for(int sb = 0;sb < length1;sb++){
+                    arr[sb] = Integer.parseInt(nums1[sb]);
+                    length[sb] = Integer.parseInt(nums2[sb]);
+
+                }
+                int anscir = 0;
+                int flag[] = new int[100];
+                for(int sb = 0;sb < 100;sb++)flag[sb] = 0;
+                int wuyule[] = new int[length1];
+                for(int wuyuzi = 0;wuyuzi < length1;wuyuzi++)wuyule[wuyuzi] = length[wuyuzi];
+                now = arr[0];
+                int i = 0;
+                int nexttime = 2147483647;
+                while(i < length1){
+                    int tepi = -1;
+                    int nowlength = 2147483647;
+                    int nowj = 2147483647;
+
+
+                    //findnexttime
+                    int sb;
+                    for(sb = 0;sb < length1;sb++){
+                        if(arr[sb] > now){
+                            nexttime = arr[sb];
+                            break;
+                        }
+
+                    }
+
+                    //findenv
+                    int j;
+                    int findflag = -1;
+                    for(j = 0;j < length1 && arr[j] <= now;j++){
+
+                        if(length[j] != 0 && length[j] < nowlength){
+                            nowj = j;
+                            nowlength = length[j];
+                            findflag = 0;
+                        }
+                    }
+                    int teplength = nexttime - now;
+                   // printf("%d %d %d\n",nowj,nexttime,nexttime - now);
+                    if(findflag == 0){
+                        if(flag[nowj] == 0)start[nowj] = now;
+                        flag[nowj]++;
+                        if(teplength == 0)teplength = 2147483647;
+                        if(teplength >= length[nowj]){
+                            end[nowj] = now + length[nowj];
+                            nexttime = now + length[nowj];
+                            length[nowj] = 0;
+                            flag[nowj] = -1;
+                            i++;
+                        }
+                        else{
+                            length[nowj] = length[nowj] - (nexttime - now);
+                        }
+                    }
+                    else{
+                        int dsb;
+                        for(dsb = 0;dsb < length1;dsb++){
+                            if(arr[dsb] > now){
+                                nexttime = arr[dsb];
+                                break;
+                            }
+                        }
+                    }
+
+
+
+                    if(nexttime - now <= 0){
+                        int ddsb;
+                        for(ddsb = 0;ddsb < length1;ddsb++){
+                            if(length[ddsb] != 0){
+                                if(flag[ddsb] == 0)start[ddsb] = now;
+                                now = now + length[ddsb];
+                                length[ddsb] = 0;
+                                flag[ddsb] = -1;
+                                end[ddsb] = now;
+                                i++;
+                            }
+                        }
+                    }
+                    now = nexttime;
+                }
+
+                for(i = 0;i < length1;i++){
+                    wait[i] = start[i] - arr[i];
+                    if(i != length1 - 1)env_wait_result = env_wait_result + Integer.toString(wait[i]) + ",";
+                    else env_wait_result = env_wait_result + Integer.toString(wait[i]);
+                }
+
+                for (i = 0;i < length1;i++){
+                    cir[i] = end[i] - arr[i];
+                    anscir += cir[i];
+                    if(i != length1 - 1)env_turnover_result = env_turnover_result + Integer.toString(cir[i])+ ",";
+                    else env_turnover_result = env_turnover_result +  Integer.toString(cir[i]);
+                }
+
+                double pjzzsc = anscir / length1;
+                double pjdqzzsc = 0;
+                for (i = 0;i < length1;i++){
+                    pjdqzzsc += cir[i] / wuyule[i];
+                }
+                pjzzsc_result = Double.toString(pjzzsc);
+                pjdqzzsc_result = Double.toString(pjdqzzsc);
+
+            }
+            else
+                alert("请选择算法");
+        }
+        else {
+
+        }
+
+
         /*此处为模拟进程调度算法，待补充*/
-        if (algorithm==1){
-            alert("fcfs");
-        }
-        else if (algorithm ==2){
-            alert("sjf");
-        }
-        else if (algorithm ==3){
-            alert("pri");
-        }
-        else if (algorithm ==4){
-            alert("sjf2");
-        }
-        else
-            alert("请选择算法");
+
+
 
 
         env_wait.setText(env_wait_result);
