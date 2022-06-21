@@ -268,16 +268,25 @@ public class PageReplace extends AppCompatActivity implements  View.OnClickListe
         alert(frame+" "+pages);
         /*此处为模拟进程调度算法，待补充*/
         if (algorithm==1){
-            pfTimes_result="FIFO";
+            //pfTimes_result="FIFO";
+            ret r=fifo(frame,pages);
+            pfTimes_result=Integer.toString(r.pfTimes);
+            pfRate_result=Double.toString(r.pfRate);
         }
         else if (algorithm ==2){
-            pfTimes_result="LRU";
+            //pfTimes_result="LRU";
+            ret r=lru(frame,pages);
+            pfTimes_result=Integer.toString(r.pfTimes);
+            pfRate_result=Double.toString(r.pfRate);
         }
         else if (algorithm ==3){
             pfTimes_result="CLOCK";
         }
         else if (algorithm ==4){
             pfTimes_result="OPT";
+            ret r=opt(frame,pages);
+            pfTimes_result=Integer.toString(r.pfTimes);
+            pfRate_result=Double.toString(r.pfRate);
         }
         else
             alert("请选择算法");
@@ -295,4 +304,319 @@ public class PageReplace extends AppCompatActivity implements  View.OnClickListe
                 .create()
                 .show();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    public static class ret{
+        int pfTimes;
+        double pfRate;
+        public ret(int t,double r){
+            this.pfTimes=t;
+            this.pfRate=r;
+        }
+    }
+    static class Frame{
+        int index;
+        int page;
+        int inTime;
+        int noUseTime;
+        int nextUse=0xffff;
+        int lastUse=-1;
+        public Frame(int index){
+            this.index=index;
+            this.page=-1;
+            this.inTime=-1;
+            this.noUseTime=0xffff;
+            this.nextUse=0xffff;
+            this.lastUse=-1;
+        }
+    }
+
+    //相当于接口，参数转换，调用置换算法
+    public static ret fifo(String frame,String pages){
+        int frameNum = 0;
+        String[]pagesstr;
+        int[] pagesint = new int[100];
+        int pageNum = 0;
+
+        try{
+            frameNum=Integer.parseInt(frame);
+            pagesstr=pages.split(",");
+            pageNum=pagesstr.length;
+            for (int i=0;i<pageNum;i++){
+                pagesint[i]=Integer.parseInt(pagesstr[i]);
+            }
+        }
+        catch (Exception e){
+            System.out.println("输入格式错误");
+        }
+
+        System.out.println("frameNum:"+frameNum);
+        System.out.println("pageNum:"+pageNum);
+        System.out.print("pages:");
+        for (int i=0;i<pageNum;i++)
+            System.out.print(pagesint[i]+",");
+
+
+        int pfTimes=pageDefaultFIFO(frameNum,pagesint,pageNum);
+        double pfRate=(double) pfTimes/(double) pageNum;
+        ret r=new ret(pfTimes,pfRate);
+        System.out.println("\npfTimes:"+pfTimes);
+        System.out.println("pfRate:"+pfRate);
+
+        return r;
+    }
+    public static ret lru(String frame, String pages){
+        int frameNum = 0;
+        String[]pagesstr;
+        int[] pagesint = new int[100];
+        int pageNum = 0;
+
+        try{
+            frameNum=Integer.parseInt(frame);
+            pagesstr=pages.split(",");
+            pageNum=pagesstr.length;
+            for (int i=0;i<pageNum;i++){
+                pagesint[i]=Integer.parseInt(pagesstr[i]);
+            }
+        }
+        catch (Exception e){
+            System.out.println("输入格式错误");
+        }
+
+        System.out.println("frameNum:"+frameNum);
+        System.out.println("pageNum:"+pageNum);
+        System.out.print("pages:");
+        for (int i=0;i<pageNum;i++)
+            System.out.print(pagesint[i]+",");
+
+
+        int pfTimes=pageDefaultLRU(frameNum,pagesint,pageNum);
+        double pfRate=(double) pfTimes/(double) pageNum;
+        ret r=new ret(pfTimes,pfRate);
+        System.out.println("\npfTimes:"+pfTimes);
+        System.out.println("pfRate:"+pfRate);
+
+        return r;
+    }
+    public static ret opt(String frame, String pages){
+        int frameNum = 0;
+        String[]pagesstr;
+        int[] pagesint = new int[100];
+        int pageNum = 0;
+
+        try{
+            frameNum=Integer.parseInt(frame);
+            pagesstr=pages.split(",");
+            pageNum=pagesstr.length;
+            for (int i=0;i<pageNum;i++){
+                pagesint[i]=Integer.parseInt(pagesstr[i]);
+            }
+        }
+        catch (Exception e){
+            System.out.println("输入格式错误");
+        }
+
+        System.out.println("frameNum:"+frameNum);
+        System.out.println("pageNum:"+pageNum);
+        System.out.print("pages:");
+        for (int i=0;i<pageNum;i++)
+            System.out.print(pagesint[i]+",");
+
+
+        int pfTimes=pageDefaultOPT(frameNum,pagesint,pageNum);
+        double pfRate=(double) pfTimes/(double) pageNum;
+        ret r=new ret(pfTimes,pfRate);
+        System.out.println("\npfTimes:"+pfTimes);
+        System.out.println("pfRate:"+pfRate);
+
+        return r;
+    }
+
+
+    //置换算法
+    static int pageDefaultFIFO(int frameNum, int[] pages,int pageNum){
+        int miss=0;
+        Frame[] frames=new Frame[frameNum];
+        for (int j=0;j<frameNum;j++){
+            frames[j]=new Frame(j);
+        }
+        int thisPage;
+        int i;
+        int match;
+        int rplc;
+        int pageIn;
+
+    /*    System.out.print(" f:  ");
+        for (int j=0;j<frameNum;j++)
+            System.out.print(j+" ");
+        System.out.println();
+    */
+        for (i=0;i<pageNum;i++){                    //模拟依次调用每个页面
+            match=match(i,frames,frameNum,pages);
+            if (match!=-1){     //匹配到
+            }
+            else{               //缺页
+                miss++;
+                pageIn=pages[i];
+                rplc=findReplaceFIFO(pageIn,i,frames,frameNum,pages,pageNum);
+                frames[rplc].page=pageIn;           //页面替换
+                frames[rplc].inTime=i;
+            }
+            //        prtCrtFrames(i,frames,frameNum);    //输出当前各页框里存的页
+        }
+        return miss;
+    }
+    static int pageDefaultLRU(int frameNum, int[] pages,int pageNum){
+        int miss=0;
+        Frame[] frames=new Frame[frameNum];
+        for (int j=0;j<frameNum;j++){
+            frames[j]=new Frame(j);
+        }
+        int thisPage;
+        int i;
+        int match;
+        int rplc;
+        int pageIn;
+
+    /*    System.out.print(" f:  ");
+        for (int j=0;j<frameNum;j++)
+            System.out.print(j+" ");
+        System.out.println();*/
+
+        for (i=0;i<pageNum;i++){                    //模拟依次调用每个页面
+            for (int j=0;j<frameNum;j++){
+                frames[j].noUseTime++;
+            }
+            match=match(i,frames,frameNum,pages);
+            if (match!=-1){     //匹配到
+                frames[match].noUseTime=0;
+            }
+            else{               //缺页
+                miss++;
+                pageIn=pages[i];
+                rplc=findReplaceLRU(pageIn,i,frames,frameNum,pages,pageNum);
+                frames[rplc].page=pageIn;           //页面替换
+                frames[rplc].noUseTime=0;
+            }
+            //        prtCrtFrames(i,frames,frameNum);    //输出当前各页框里存的页
+        }
+        return miss;
+    }
+
+    static int pageDefaultOPT(int frameNum, int[] pages,int pageNum){
+        int miss=0;
+        Frame[] frames=new Frame[frameNum];
+        for (int j=0;j<frameNum;j++){
+            frames[j]=new Frame(j);
+        }
+        int thisPage;
+        int i;
+        int match;
+        int rplc;
+        int pageIn;
+
+    /*    System.out.print(" f:  ");
+        for (int j=0;j<frameNum;j++)
+            System.out.print(j+" ");
+        System.out.println();
+    */
+        for (i=0;i<pageNum;i++){                    //模拟依次调用每个页面
+            match=match(i,frames,frameNum,pages);
+            if (match!=-1){     //匹配到
+                frames[match].lastUse=i;        //更新lastUse
+            }
+            else{               //缺页
+                miss++;
+                pageIn=pages[i];
+                rplc=findReplaceOPT(pageIn,i,frames,frameNum,pages,pageNum);
+                frames[rplc].page=pageIn;           //页面替换
+                frames[rplc].lastUse=i;
+                frames[rplc].nextUse=0xffff;
+            }
+            //        prtCrtFrames(i,frames,frameNum);    //输出当前各页框里存的页
+        }
+        return miss;
+    }
+
+    //匹配
+    static int match(int i, Frame[] frames, int frameNum, int[] pages){
+        int j;
+        for(j=0;j<frameNum;j++){
+            if (frames[j].page==pages[i]){
+                return j;               //不缺页，返回页框
+            }
+        }
+        return -1;                      //缺页，返回-1
+    }
+
+    //替换
+    static int findReplaceFIFO(int page, int now_i, Frame[] frames, int frameNum, int[] pages, int pageNum) {
+        int rplc = -1;
+        int min = 0xffff;
+        int thisPage;
+
+        //     System.out.print("              ");
+        for (int j = 0; j < frameNum; j++) {       //找最早
+            //         System.out.print((frames[j].inTime==-1?" -":String.format("%2d",frames[j].inTime))+" ");
+            if (frames[j].inTime < min) {
+                min = frames[j].inTime;
+                rplc = j;
+            }
+        }
+        //    System.out.println("in:"+page);
+        return rplc;
+    }
+    static int findReplaceLRU(int page, int now_i, Frame[] frames, int frameNum, int[] pages, int pageNum) {
+        int rplc = -1;
+        int max=-2;
+        int thisPage;
+
+        //    System.out.print("              ");
+        for (int j = 0; j < frameNum; j++) {       //找最久没用
+            //        System.out.print((frames[j].noUseTime>=0xff00?"-":frames[j].noUseTime)+" ");
+            if (frames[j].noUseTime>max) {
+                max = frames[j].noUseTime;
+                rplc = j;
+            }
+        }
+        //    System.out.println("in:"+page);
+        return rplc;
+    }
+    static int findReplaceOPT(int page, int now_i, Frame[] frames, int frameNum, int[] pages, int pageNum) {
+        int rplc = -1;
+        int max = 0;
+        int thisPage;
+        for (int j = 0; j < frameNum; j++) {       //更新每个frame的nextUse
+            thisPage = frames[j].page;
+            frames[j].nextUse=0xffff;
+            for (int i = now_i; i < pageNum; i++) {
+                if (pages[i] == thisPage) {
+                    frames[j].nextUse = i - now_i;
+                    break;
+                }
+            }
+        }
+        //    System.out.print("              ");
+        for (int j = 0; j < frameNum; j++) {       //找最大
+            //         System.out.print((frames[j].nextUse==0xffff?" *":String.format("%2d",frames[j].nextUse))+" ");
+            if (frames[j].nextUse > max) {
+                max = frames[j].nextUse;
+                rplc = j;
+            }
+        }
+        //     System.out.println("in:"+page);
+        return rplc;
+    }
+
+
 }
