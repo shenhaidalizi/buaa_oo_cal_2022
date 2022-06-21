@@ -262,20 +262,21 @@ public class PageReplace extends AppCompatActivity implements  View.OnClickListe
     }
 
     public void pCalculate(String frame,String pages){
-        String pfTimes_result="哈哈";
-        String pfRate_result="呵呵";
+        String pfTimes_result="";
+        String pfRate_result="";
 
-        alert(frame+" "+pages);
+        //alert(frame+" "+pages);
         /*此处为模拟进程调度算法，待补充*/
+        ret r=new ret(0,0);
         if (algorithm==1){
             //pfTimes_result="FIFO";
-            ret r=fifo(frame,pages);
+            r=callAlgorithm(frame,pages,1);
             pfTimes_result=Integer.toString(r.pfTimes);
             pfRate_result=Double.toString(r.pfRate);
         }
         else if (algorithm ==2){
             //pfTimes_result="LRU";
-            ret r=lru(frame,pages);
+            r=callAlgorithm(frame,pages,2);
             pfTimes_result=Integer.toString(r.pfTimes);
             pfRate_result=Double.toString(r.pfRate);
         }
@@ -284,16 +285,21 @@ public class PageReplace extends AppCompatActivity implements  View.OnClickListe
         }
         else if (algorithm ==4){
             pfTimes_result="OPT";
-            ret r=opt(frame,pages);
+            r=callAlgorithm(frame,pages,4);
             pfTimes_result=Integer.toString(r.pfTimes);
             pfRate_result=Double.toString(r.pfRate);
         }
         else
             alert("请选择算法");
 
-
         pfTimes_edit.setText(pfTimes_result);
         pfRate_edit.setText(pfRate_result);
+
+        if (r.pfTimes==-1) {
+            pfTimes_edit.setText("");
+            pfRate_edit.setText("");
+            alert("请输入有效数据");
+        }
     }
 
     public void alert(String s){
@@ -342,7 +348,7 @@ public class PageReplace extends AppCompatActivity implements  View.OnClickListe
     }
 
     //相当于接口，参数转换，调用置换算法
-    public static ret fifo(String frame,String pages){
+    public static ret callAlgorithm(String frame, String pages,int algorithm){
         int frameNum = 0;
         String[]pagesstr;
         int[] pagesint = new int[100];
@@ -360,84 +366,27 @@ public class PageReplace extends AppCompatActivity implements  View.OnClickListe
             System.out.println("输入格式错误");
         }
 
-        System.out.println("frameNum:"+frameNum);
-        System.out.println("pageNum:"+pageNum);
-        System.out.print("pages:");
-        for (int i=0;i<pageNum;i++)
-            System.out.print(pagesint[i]+",");
+        if (pageNum==0)
+            return new ret(-1,-1);
 
+        int pfTimes=0;
+        switch (algorithm){
+            case 1:
+                pfTimes=pageDefaultFIFO(frameNum,pagesint,pageNum);
+                break;
+            case 2:
+                pfTimes=pageDefaultLRU(frameNum,pagesint,pageNum);
+                break;
+            case 3:
+                //pfTimes=pageDefaultOPT(frameNum,pagesint,pageNum);
+                break;
+            case 4:
+                pfTimes=pageDefaultOPT(frameNum,pagesint,pageNum);
+                break;
+        }
 
-        int pfTimes=pageDefaultFIFO(frameNum,pagesint,pageNum);
         double pfRate=(double) pfTimes/(double) pageNum;
         ret r=new ret(pfTimes,pfRate);
-        System.out.println("\npfTimes:"+pfTimes);
-        System.out.println("pfRate:"+pfRate);
-
-        return r;
-    }
-    public static ret lru(String frame, String pages){
-        int frameNum = 0;
-        String[]pagesstr;
-        int[] pagesint = new int[100];
-        int pageNum = 0;
-
-        try{
-            frameNum=Integer.parseInt(frame);
-            pagesstr=pages.split(",");
-            pageNum=pagesstr.length;
-            for (int i=0;i<pageNum;i++){
-                pagesint[i]=Integer.parseInt(pagesstr[i]);
-            }
-        }
-        catch (Exception e){
-            System.out.println("输入格式错误");
-        }
-
-        System.out.println("frameNum:"+frameNum);
-        System.out.println("pageNum:"+pageNum);
-        System.out.print("pages:");
-        for (int i=0;i<pageNum;i++)
-            System.out.print(pagesint[i]+",");
-
-
-        int pfTimes=pageDefaultLRU(frameNum,pagesint,pageNum);
-        double pfRate=(double) pfTimes/(double) pageNum;
-        ret r=new ret(pfTimes,pfRate);
-        System.out.println("\npfTimes:"+pfTimes);
-        System.out.println("pfRate:"+pfRate);
-
-        return r;
-    }
-    public static ret opt(String frame, String pages){
-        int frameNum = 0;
-        String[]pagesstr;
-        int[] pagesint = new int[100];
-        int pageNum = 0;
-
-        try{
-            frameNum=Integer.parseInt(frame);
-            pagesstr=pages.split(",");
-            pageNum=pagesstr.length;
-            for (int i=0;i<pageNum;i++){
-                pagesint[i]=Integer.parseInt(pagesstr[i]);
-            }
-        }
-        catch (Exception e){
-            System.out.println("输入格式错误");
-        }
-
-        System.out.println("frameNum:"+frameNum);
-        System.out.println("pageNum:"+pageNum);
-        System.out.print("pages:");
-        for (int i=0;i<pageNum;i++)
-            System.out.print(pagesint[i]+",");
-
-
-        int pfTimes=pageDefaultOPT(frameNum,pagesint,pageNum);
-        double pfRate=(double) pfTimes/(double) pageNum;
-        ret r=new ret(pfTimes,pfRate);
-        System.out.println("\npfTimes:"+pfTimes);
-        System.out.println("pfRate:"+pfRate);
 
         return r;
     }
