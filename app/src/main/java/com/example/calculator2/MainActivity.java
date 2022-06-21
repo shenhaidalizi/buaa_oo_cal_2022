@@ -111,8 +111,9 @@ public class MainActivity extends AppCompatActivity {
         if(item.getItemId()==R.id.help){
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("帮助");
-            builder.setMessage("本软件为操作系统计算器，包含了常规计算器、科学计算器、进制转换、" +
-                    "适配操作系统日常使用的位运算、计算机16进制地址解析、页面置换模拟、进程调度模拟、磁盘寻道模拟等多种功能，" +
+            builder.setMessage("本软件为操作系统计算器，" +
+                    "从计算机操作系统领域的实践过程中，现有的计算器无法满足的需求出发，" +
+                    "适配操作系统日常使用常规计算器、科学计算器、进制转换、的位运算、计算机16进制地址解析、页面置换模拟、进程调度模拟、磁盘寻道模拟等多种功能，" +
                     "本产品为用户提供了在操作系统学科领域的学习实践过程中更加便利的体验");
             builder.setPositiveButton("确 定", new DialogInterface.OnClickListener() {
                 @Override

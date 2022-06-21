@@ -206,7 +206,10 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
                     env_arr.setText("");
                     env_length.setText("");
                     env_pri.setText("");
+                    env_wait.setText("");
+                    env_turnover.setText("");
                     pjzzsc.setText("");
+                    pjdqzzsc.setText("");
                     break;
                 case R.id.backspace:
                     if (!isClean1) {
@@ -270,7 +273,10 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
                     env_arr.setText("");
                     env_length.setText("");
                     env_pri.setText("");
+                    env_wait.setText("");
+                    env_turnover.setText("");
                     pjzzsc.setText("");
+                    pjdqzzsc.setText("");
                     break;
                 case R.id.backspace:
                     if (!isClean2) {
