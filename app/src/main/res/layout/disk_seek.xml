@@ -27,7 +27,20 @@
         <EditText
             android:id="@+id/initialTrack_edit"
             android:layout_height="match_parent"
-            android:layout_weight=".3"
+            android:layout_weight="1"
+            android:maxLength="100"
+            android:singleLine="true" />
+        <TextView
+            android:id="@+id/maxTrack_text"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="总磁道数"
+            />
+
+        <EditText
+            android:id="@+id/maxTrack_edit"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:maxLength="100"
             android:singleLine="true" />
 

@@ -272,10 +272,10 @@
             android:text="3" />
 
         <Button
-            android:id="@+id/but_d"
+            android:id="@+id/but_pri"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="算法3" />
+            android:text="primory" />
 
     </TableRow>
     <TableRow
@@ -303,12 +303,12 @@
             android:layout_height="fill_parent"
             android:text="enter"
             />
+
         <Button
-            android:id="@+id/but_b"
-            android:layout_weight="1"
+            android:id="@+id/but_sjf2"
             android:layout_height="fill_parent"
-            android:text="算法4"
-            />
+            android:layout_weight="1"
+            android:text="sjf\n(抢占式）" />
 
     </TableRow>
 

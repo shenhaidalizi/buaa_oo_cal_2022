@@ -29,9 +29,8 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
     private Button but_comma;
     private Button but_fcfs;
     private Button but_sjf;
-    private Button but_enter;
-    private Button but_e;
-    private Button but_f;
+    private Button but_pri;
+    private Button but_sjf2;
     private EditText env_arr;
     private EditText env_length;
     private EditText env_pri;
@@ -50,6 +49,7 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
     //    操作
     private Button clean_all;
     private Button backspace;
+    private Button but_enter;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -69,10 +69,12 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
         but_comma=findViewById(R.id.but_comma);
         but_fcfs=findViewById(R.id.but_fcfs);
         but_sjf=findViewById(R.id.but_sjf);
-        but_enter=findViewById(R.id.but_enter);
+        but_pri=findViewById(R.id.but_pri);
+        but_sjf2=findViewById(R.id.but_sjf2);
 
         backspace=findViewById(R.id.backspace);
         clean_all=findViewById(R.id.clean_all);
+        but_enter=findViewById(R.id.but_enter);
 
         env_arr=findViewById(R.id.arr_edit);
         env_length=findViewById(R.id.length_edit);
@@ -106,9 +108,8 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
         but_comma.setOnClickListener(this);
         but_fcfs.setOnClickListener(this);
         but_sjf.setOnClickListener(this);
-        but_enter.setOnClickListener(this);
-        //but_e.setOnClickListener(this);
-        //but_f.setOnClickListener(this);
+        but_pri.setOnClickListener(this);
+        but_sjf2.setOnClickListener(this);
         env_arr.setOnClickListener(this);
         env_length.setOnClickListener(this);
         env_pri.setOnClickListener(this);
@@ -120,6 +121,7 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
 
         backspace.setOnClickListener(this);
         clean_all.setOnClickListener(this);
+        but_enter.setOnClickListener(this);
 
         env_arr.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -168,6 +170,12 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
                     break;
                 case R.id.but_sjf:
                     algorithm = 2;
+                    break;
+                case R.id.but_pri:
+                    algorithm = 3;
+                    break;
+                case R.id.but_sjf2:
+                    algorithm = 4;
                     break;
 
                 case R.id.but_0:
@@ -227,6 +235,12 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
                 case R.id.but_sjf:
                     algorithm = 2;
                     break;
+                case R.id.but_pri:
+                    algorithm = 3;
+                    break;
+                case R.id.but_sjf2:
+                    algorithm = 4;
+                    break;
 
                 case R.id.but_0:
                 case R.id.but_1:
@@ -285,6 +299,12 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
                 case R.id.but_sjf:
                     algorithm = 2;
                     break;
+                case R.id.but_pri:
+                    algorithm = 3;
+                    break;
+                case R.id.but_sjf2:
+                    algorithm = 4;
+                    break;
 
                 case R.id.but_0:
                 case R.id.but_1:
@@ -342,18 +362,24 @@ public class Manager extends AppCompatActivity implements  View.OnClickListener{
     }
 
     public void Mcalculate(String str_arr,String str_length,String str_pri){
-        String env_wait_result="哈哈";
-        String env_turnover_result="呵呵";
-        String pjzzsc_result="吼吼";
-        String pjdqzzsc_result="嘿嘿";
+        String env_wait_result="";
+        String env_turnover_result="";
+        String pjzzsc_result="";
+        String pjdqzzsc_result="";
 
-        alert(str_arr+" "+str_length+" "+str_pri);
+        //alert(str_arr+" "+str_length+" "+str_pri);
         /*此处为模拟进程调度算法，待补充*/
         if (algorithm==1){
-
+            alert("fcfs");
         }
         else if (algorithm ==2){
-
+            alert("sjf");
+        }
+        else if (algorithm ==3){
+            alert("pri");
+        }
+        else if (algorithm ==4){
+            alert("sjf2");
         }
         else
             alert("请选择算法");
